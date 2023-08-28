@@ -1,5 +1,6 @@
 USE ecommerce;
 show tables;
+-- Relembrando as estruturas
 select * from clients;
 select * from orders;
 SELECT* FROM supplier;

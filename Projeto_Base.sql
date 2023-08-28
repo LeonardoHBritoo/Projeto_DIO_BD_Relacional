@@ -1,8 +1,6 @@
 -- criação do banco de dados para o cenário de E-commerce 
--- drop database ecommerce;
 create database ecommerce;
 use ecommerce;
-
 -- criar tabela cliente
 create table clients(
 		idClient int auto_increment primary key,
@@ -16,10 +14,7 @@ create table clients(
 
 alter table clients auto_increment=1;
 
--- desc clients;
 -- criar tabela produto
-
--- size = dimensão do produto
 create table product(
 		idProduct int auto_increment primary key,
         Pname varchar(255) not null,
@@ -53,7 +48,6 @@ create table orders(
 );
 alter table orders auto_increment=1;
 
-desc orders;
 
 -- criar tabela estoque
 create table productStorage(
@@ -88,7 +82,6 @@ create table seller(
 
 alter table seller auto_increment=1;
 
-
 -- tabelas de relacionamentos M:N
 
 create table productSeller(
@@ -100,7 +93,6 @@ create table productSeller(
     constraint fk_product_product foreign key (idPproduct) references product(idProduct)
 );
 
-desc productSeller;
 
 create table productOrder(
 	idPOproduct int,

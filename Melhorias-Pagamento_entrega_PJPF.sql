@@ -27,16 +27,8 @@ alter table orders
     add idPaymentMethod int,
     add constraint fk_order_payment foreign key (idPaymentMethod) references paymentMethods(idPaymentMethod);
 
--- Atualizar coluna de envio na tabela de pedidos
-alter table orders
-    change sendValue shippingCost float default 0;
 
 -- Adicionar colunas de status e rastreio à tabela de pedidos
 alter table orders
     add deliveryStatus enum('Em trânsito', 'Entregue', 'Pendente') not null default 'Pendente',
-    add trackingCode varchar(20) after deliveryStatus;
-
--- Atualizar tabela de produtos em estoque
-alter table productStorage
-    change storageLocation storageLocation varchar(255) not null,
-    add quantityAvailable int default 0;
+    add trackingCode varchar(20);

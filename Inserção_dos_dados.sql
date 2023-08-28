@@ -22,8 +22,7 @@ insert into product (Pname, classification_kids, category, avaliação, size) va
                               ('Farinha de arroz',False,'Alimentos','2',null),
                               ('Fire Stick Amazon',False,'Eletrônico','3',null);
 
-select * from clients;
-select * from product;
+
 -- idOrder, idOrderClient, orderStatus, orderDescription, sendValue, paymentCash
 
 delete from orders where idOrderClient in  (1,2,3,4);
@@ -34,9 +33,6 @@ insert into orders (idOrderClient, orderStatus, orderDescription, sendValue, pay
                              (4,default,'compra via web site',150,0);
 
 -- idPOproduct, idPOorder, poQuantity, poStatus
-select * from orders;
-
-
 insert into productOrder (idPOproduct, idPOorder, poQuantity, poStatus) values
 						 (1,4,2,null),
                          (2,4,1,null),
@@ -62,7 +58,7 @@ insert into supplier (SocialName, CNPJ, contact) values
                             ('Eletrônicos Silva',854519649143457,'21985484'),
                             ('Eletrônicos Valma', 934567893934695,'21975474');
                             
-select * from supplier;
+
 -- idPsSupplier, idPsProduct, quantity
 insert into productSupplier (idPsSupplier, idPsProduct, quantity) values
 						 (1,1,500),
@@ -77,35 +73,12 @@ insert into seller (SocialName, AbstName, CNPJ, CPF, location, contact) values
 					    ('Botique Durgas',null,null,123456783,'Rio de Janeiro', 219567895),
 						('Kids World',null,456789123654485,null,'São Paulo', 1198657484);
 
-select * from seller;
+
 -- idPseller, idPproduct, prodQuantity
 insert into productSeller (idPseller, idPproduct, prodQuantity) values 
 						 (1,6,80),
                          (2,7,10);
 
-select * from productSeller;
-
-select count(*) from clients;
-select * from clients c, orders o where c.idClient = idOrderClient;
-
-select Fname,Lname, idOrder, orderStatus from clients c, orders o where c.idClient = idOrderClient;
-select concat(Fname,' ',Lname) as Client, idOrder as Request, orderStatus as Status from clients c, orders o where c.idClient = idOrderClient;
-
 insert into orders (idOrderClient, orderStatus, orderDescription, sendValue, paymentCash) values 
 							 (2, default,'compra via aplicativo',null,1);
                              
-select count(*) from clients c, orders o 
-			where c.idClient = idOrderClient;
-
-select * from orders;
-
--- recuperação de pedido com produto associado
-select * from clients c 
-				inner join orders o ON c.idClient = o.idOrderClient
-                inner join productOrder p on p.idPOorder = o.idOrder
-		group by idClient; 
-        
--- Recuperar quantos pedidos foram realizados pelos clientes?
-select c.idClient, Fname, count(*) as Number_of_orders from clients c 
-				inner join orders o ON c.idClient = o.idOrderClient
-		group by idClient; 
